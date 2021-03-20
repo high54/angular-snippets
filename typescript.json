@@ -86,6 +86,47 @@
 			"export class ${1:Name}Module {}"
 		]
 	},
+	"@RoutingModule": {
+		"prefix": "@RoutingModule",
+		"description": "Creates an @NgModule for routes",
+		"body": [
+			"import { NgModule } from '@angular/core';",
+			"import { Routes, RouterModule } from '@angular/router';",
+			"",
+			"",
+			"const routes: Routes = [",
+			"];",
+			"",
+			"",
+			"",
+			"@NgModule({",
+			"\timports: [RouterModule.forChild(routes)],",
+			"\texports: [RouterModule]",
+			"})",
+			"export class ${1:Name}RoutingModule {}",
+			""
+		]
+	},
+	"@MaterialModule": {
+		"prefix": "@MaterialModule",
+		"description": "Creates an @NgModule for Angular Material components",
+		"body": [
+			"import { NgModule } from '@angular/core';",
+			"",
+			"",
+			"",
+			"@NgModule({",
+			"\timports: [",
+			"",
+			"],",
+			"\texports: [",
+			"",
+			"]",
+			"})",
+			"export class ${1:Name}MaterialModule {}",
+			""
+		]
+	},
 	"@Pipe": {
 		"prefix": "@Pipe",
 		"description": "Creates an @Pipe",
@@ -471,5 +512,47 @@
 			"export const get${1:className}sLoaded = (state: ${1:className}State) => state.loaded;",
 			"",
 		]
-	}
+	},
+	"@ServiceNest": {
+		"prefix": "@Service",
+		"description": "Creates an @Injectable service for NestJs",
+		"body": [
+			"import { Injectable } from '@nestjs/common';",
+			"// Interfaces",
+			"import { ${1:className} } from '../interfaces/${2:name}.interface';",
+			"import { Create${1:className}Dto } from '../dto/create-${2:name}.dto';",
+			"",
+			"@Injectable()",
+			"export class ${1:className}sService {",
+			"\t\t\t\tprivate ${2:name}s: ${1:className}[] = [];",
+			"\t\t\t\tconstructor() { }",
+			"\t\t\t\tpublic findAll(): ${1:className}[] {",
+			"\t\t\t\t\t\t\t\treturn this.${2:name}s;",
+			"\t\t\t\t}",
+			"",
+			"\t\t\t\tpublic findOne(id: string): ${1:className} {",
+			"\t\t\t\t\t\t\t\treturn this.${2:name}s.find(${2:name} => ${2:name}.id === parseInt(id, 10));",
+			"\t\t\t\t}",
+			"",
+			"\t\t\t\tpublic create(${2:name}: ${1:className}): number {",
+			"\t\t\t\t\t\t\t\t${2:name}.id = this.${2:name}s.length + 1;",
+			"\t\t\t\t\t\t\t\tthis.${2:name}s.push(${2:name});",
+			"\t\t\t\t\t\t\t\treturn ${2:name}.id;",
+			"\t\t\t\t}",
+			"",
+			"\t\t\t\tpublic delete(id: string): boolean {",
+			"\t\t\t\t\t\t\t\tconst index = this.${2:name}s.findIndex((${2:name}) => ${2:name}.id === parseInt(id, 10));",
+			"\t\t\t\t\t\t\t\tthis.${2:name}s.splice(index);",
+			"\t\t\t\t\t\t\t\treturn true;",
+			"\t\t\t\t}",
+			"",
+			"\t\t\t\tpublic update(${2:name}: Create${1:className}Dto, id: string): boolean {",
+			"\t\t\t\t\t\t\t\tconst index = this.${2:name}s.findIndex((${2:name}) => ${2:name}.id === parseInt(id, 10));",
+			"\t\t\t\t\t\t\t\tthis.${2:name}s[index] = ${2:name} as ${1:className};",
+			"\t\t\t\t\t\t\t\treturn true;",
+			"\t\t\t\t}",
+			"}",
+			""
+		]
+	},
 }
