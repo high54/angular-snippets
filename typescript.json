@@ -16,6 +16,24 @@
 			""
 		]
 	},
+	"@ContainersIndex":{
+		"prefix": "@ContainersIndex",
+		"description": "Creates a index for containers",
+		"body": [
+			"",
+			"export const containers:any[]=[];",
+			""
+		]
+	},
+	"@ComponentsIndex":{
+		"prefix": "@ComponentsIndex",
+		"description": "Creates a index for components",
+		"body": [
+			"",
+			"export const components:any[]=[];",
+			""
+		]
+	},
 	"@Injectable": {
 		"prefix": "@Injectable",
 		"description": "Creates an @Injectable service",
